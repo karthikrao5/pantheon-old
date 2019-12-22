@@ -1,6 +1,5 @@
 package com.pantheon.kernel;
 
-import com.pantheon.configs.Config;
 import org.lwjgl.glfw.GLFW;
 
 import static org.lwjgl.glfw.GLFW.glfwSetWindowShouldClose;
