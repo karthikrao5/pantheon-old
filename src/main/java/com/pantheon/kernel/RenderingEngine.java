@@ -4,6 +4,7 @@ import com.pantheon.configs.Config;
 import org.lwjgl.glfw.GLFW;
 
 import static org.lwjgl.glfw.GLFW.glfwSetWindowShouldClose;
+import static org.lwjgl.opengl.GL11.*;
 
 public class RenderingEngine {
 
@@ -19,6 +20,15 @@ public class RenderingEngine {
 
     void render() {
         Config.clearScreen();
+
+        glBegin(GL_QUADS);
+
+        glVertex2f(-0.5f, 0.5f);
+        glVertex2f(0.5f, 0.5f);
+        glVertex2f(0.5f, -0.5f);
+        glVertex2f(-0.5f, -0.5f);
+
+        glEnd();
 
         // draw into openGL window
         window.render();

@@ -36,10 +36,9 @@ public class Window {
         if (window == 0) {
             throw new RuntimeException("Failed to create window");
         }
-
+        glfwShowWindow(window);
         glfwMakeContextCurrent(window);
         GL.createCapabilities();
-        glfwShowWindow(window);
     }
 
 
