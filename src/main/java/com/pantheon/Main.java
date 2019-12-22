@@ -1,3 +1,5 @@
+package com.pantheon;
+
 import com.pantheon.kernel.Game;
 
 public class Main {

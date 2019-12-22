@@ -1,4 +1,4 @@
-package com.pantheon.kernel.configs;
+package com.pantheon.configs;
 
 public class Constants {
 

@@ -1,7 +1,7 @@
 package com.pantheon.kernel;
 
-import com.pantheon.kernel.configs.Config;
-import com.pantheon.kernel.configs.Constants;
+import com.pantheon.configs.Config;
+import com.pantheon.configs.Constants;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL31;

@@ -1,4 +1,4 @@
-package com.pantheon.kernel.configs;
+package com.pantheon.configs;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL30.GL_FRAMEBUFFER_SRGB;
