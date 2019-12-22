@@ -14,46 +14,51 @@ public class ShaderProgram {
         }
     }
 
-    void addVertexShader(String shaderCode) {
+    public void addVertexShader(String shaderCode) {
         addShader(shaderCode, GL_VERTEX_SHADER);
     }
 
-    void addFragShader(String shaderCode) {
+    public void addFragShader(String shaderCode) {
         addShader(shaderCode, GL_FRAGMENT_SHADER);
     }
 
     private void addShader(String code, int type) {
-        int shader = glCreateShader(type);
+        int shaderId = glCreateShader(type);
 
-        if (shader == 0) {
+        if (shaderId == 0) {
             System.err.println(this.getClass().getName() + " Shader creation failed");
             System.exit(1);
         }
 
-        glShaderSource(shader, code);
-        glCompileShader(shader);
+        glShaderSource(shaderId, code);
+        glCompileShader(shaderId);
 
-        if (glGetShaderi(shader, GL_COMPILE_STATUS) == 0) {
-            System.err.println(this.getClass().getName() + " " + glGetShaderInfoLog(shader, 1024));
+        if (glGetShaderi(shaderId, GL_COMPILE_STATUS) == 0) {
+            System.err.println(this.getClass().getName() + " " + glGetShaderInfoLog(shaderId, 1024));
             System.exit(1);
         }
 
-        glAttachShader(program, shader);
+        glAttachShader(program, shaderId);
     }
 
-    public void compileShader() {
+    public void link() {
         glLinkProgram(program);
 
         if (glGetProgrami(program, GL_LINK_STATUS) == 0) {
             System.out.println(this.getClass().getName() + " " + glGetProgramInfoLog(program, 1024));
             System.exit(1);
         }
+    }
 
-        glValidateProgram(program);
+    public void bind() {
+        glUseProgram(program);
+    }
 
-        if (glGetProgrami(program, GL_VALIDATE_STATUS) == 0) {
-            System.err.println(this.getClass().getName() + " " + glGetProgramInfoLog(program, 1024));
-            System.exit(1);
-        }
+    public void unbind() {
+        glUseProgram(0);
+    }
+
+    public int getProgram() {
+        return this.program;
     }
 }

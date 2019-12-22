@@ -3,15 +3,15 @@ package com.pantheon.kernel;
 import org.lwjgl.opengl.GL;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.opengl.GL11.GL_TRUE;
+import static org.lwjgl.opengl.GL11.*;
 
 public class Window {
 
     private static Window _instance = null;
 
-    long window;
-    int width;
-    int height;
+    private long window;
+    private int width;
+    private int height;
 
     public static Window getInstance() {
         if (_instance == null) {
@@ -30,6 +30,9 @@ public class Window {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+        glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
+        glfwWindowHint(GLFW_SAMPLES, 4); //16 for production
 
         window = glfwCreateWindow(width, height, "Pantheon Game Engine", 0,0);
 
@@ -39,7 +42,12 @@ public class Window {
 
         glfwMakeContextCurrent(window);
         GL.createCapabilities();
+
+        glfwSwapInterval(1); // v-sync
         glfwShowWindow(window);
+
+        glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+        glEnable(GL_DEPTH);
     }
 
 
